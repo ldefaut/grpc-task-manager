@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package hero.v1alpha;
+
+message Time {
+  int32 id = 1;
+  string start_date = 2;
+  string end_date = 3;
+  string title = 4;
+  string description = 5;
+  string location = 6;
+}
+
+service TimeCRUDService {
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Add (AddRequest) returns (AddResponse);
+  rpc Update (UpdateRequest) returns (UpdateResponse);
+  rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+message GetRequest {
+  string title = 1;
+  string id = 2;
+}
+
+message GetResponse {
+  repeated Time times = 1;
+}
+
+message AddRequest {
+  string title = 1;
+  string description = 2;
+  string start_date = 3;
+  string end_date = 4;
+}
+
+message AddResponse {
+  Time time = 1;
+}
+
+message UpdateRequest {
+  string id = 1;
+  Time time = 2;
+}
+
+message UpdateResponse {
+  Time time = 1;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {
+  Time time = 1;
+}

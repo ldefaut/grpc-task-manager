@@ -1,5 +1,7 @@
-import type { Handle } from '@sveltejs/kit';
-import { authClient, taskClients, userClient, mediaClient } from '$lib/server/rpcClients';
+import type {Handle} from '@sveltejs/kit';
+import {authClient, mediaClient, taskClients, userClient} from '$lib/server/rpcClients';
+import {initializeApp} from "firebase/app";
+import {firebaseConfig} from "./firebase";
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.taskClients = taskClients;
@@ -7,7 +9,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.authClient = authClient;
 	event.locals.mediaClient = mediaClient;
 
-	const response = await resolve(event);
+	initializeApp(firebaseConfig);
 
-	return response;
+	return resolve(event);
 };
