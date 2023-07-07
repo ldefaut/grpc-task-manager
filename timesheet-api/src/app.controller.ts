@@ -65,13 +65,13 @@ export class AppController implements TimesheetCRUDServiceController {
   async add(request: AddRequest): Promise<AddResponse> {
     let timesheet: Timesheet;
     // eslint-disable-next-line prefer-const
-    timesheet = this.appService.create({
+    timesheet = (await this.appService.create({
       title: request.title,
       description: request.description,
       start_date: request.startDate,
       end_date: request.endDate,
       locatioon: request.location,
-    }) as unknown as Timesheet;
+    })) as unknown as Timesheet;
 
     return { time: timesheet };
   }
