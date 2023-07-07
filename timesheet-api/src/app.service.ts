@@ -7,7 +7,7 @@ export class AppService {
   constructor(private prisma: PrismaService) {}
 
   create(data: Prisma.TimesheetCreateInput): Promise<Timesheet> {
-    return this.prisma.timesheet.create({ data });
+    return this.prisma.timesheet.create({ data: data });
   }
 
   findById(id: number): Promise<Timesheet> {

@@ -12,13 +12,7 @@ import {MediaServiceClient} from '$src/lib/stubs/media/v1alpha/media.client';
 import {env} from '$env/dynamic/private';
 import {TimesheetCRUDServiceClient} from "../stubs/timesheet/v1_alpha/timesheet.client";
 
-const credentials = env.secure === 'true'
-    ? ChannelCredentials.createSsl(
-        fs.readFileSync(env.ROOT_CA as string),
-        fs.readFileSync(env.FRONT_KEY as string),
-        fs.readFileSync(env.FRONT_CERT as string)
-    )
-    : ChannelCredentials.createInsecure();
+const credentials = ChannelCredentials.createInsecure();
 
 const taskTransport = new GrpcTransport({
     host: env.TASK_API_URL as string,
