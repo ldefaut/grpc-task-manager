@@ -8,7 +8,7 @@ async function bootstrap() {
   const cs = app.get(ConfigService);
   app.connectMicroservice(grpcOption(cs));
   await app.startAllMicroservices();
-  await app.listen(8888);
+  await app.listen(4004);
 }
 
 bootstrap();
